@@ -1,0 +1,82 @@
+/* Search + Input */
+.search-box {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;  /* centers left-to-right */
+  align-items: center;       /* centers vertically */
+  gap: 10px;                 /* spacing between input + button */
+}
+
+/* Optional: make the input a reasonable width */
+.search-box input {
+  padding: 10px;
+  width: 50%;               /* adjust what looks best (50–60%) */
+  max-width: 400px;         /* prevents huge stretching */
+  border: 1px solid #e0f7f4;
+  border-radius: 8px;
+}
+
+/* Keep your button the same */
+.search-box button {
+  padding: 10px 16px;
+  border: none;
+  background-color: #009688;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-box button:hover {
+  background-color: #00796b;
+}
+
+/* Errors */
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+th, td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+p {
+  margin-top: 1rem;
+  color: #555;
+  text-align: center;
+}
+
+/* SCOPED styles — apply ONLY to this component */
+.table-container {
+  color: #ca3647;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;           /* <--- IMPORTANT */
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+/* NEVER put global layout rules in component CSS */

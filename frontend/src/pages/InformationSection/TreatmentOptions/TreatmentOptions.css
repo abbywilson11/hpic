@@ -1,0 +1,97 @@
+/* ================================
+   PAGE CONTAINER
+================================ */
+.page-container {
+  text-align: left !important;
+}
+
+.page-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background-color: #e0f7f4;
+  font-family: "Segoe UI", sans-serif;
+  color: #222;
+  line-height: 1.6;
+  text-align: left !important;
+
+}
+
+/* ================================
+   PAGE TITLE
+================================ */
+.page-title {
+  background-color: #ffffff;
+  color: #009688;
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  padding: 18px 0;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ================================
+   SECTION BLOCK
+================================ */
+.section-block {
+  background-color: #ffffff;
+  padding: 28px 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-align: left !important;
+}
+
+.section-block h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #009688;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: left !important;
+}
+
+.subheading {
+  color: #00796b;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  text-align: left !important;
+}
+
+/* Force left align for everything inside the treatment page */
+.page-container,
+.page-container h3,
+.page-container h4,
+.page-container p,
+.page-container li {
+  text-align: left !important;
+}
+
+/* ================================
+   TABLE SECTION
+================================ */
+.table-section {
+  margin-top: 30px;
+}
+
+/* ================================
+   MOBILE
+================================ */
+@media (max-width: 600px) {
+  .section-image {
+    width: 100%;
+    height: auto;
+  }
+}
+.page-subtitle {
+  display: block;        /* puts subtitle on its own line */
+  font-size: 16px;       /* slightly smaller than title */
+  font-weight: 400;      /* lighter so title stands out */
+  color: #555;           /* softer, readable gray */
+  margin-top: 6px;       /* spacing below "Treatment Options" */
+  text-align: center;    /* keeps it centered */
+}

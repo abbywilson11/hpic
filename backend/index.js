@@ -1,29 +1,36 @@
+// backend/index.js
 import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-//added route for table fo hospitals
-app.get("/api/hospitals", (req, res) => {
-    res.json({ message: "List of hospitals goes here" });
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-//BROCHURE SECTION
-app.use(cors());
-
-// Fix __dirname in ES modules
+// Resolve __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// GET BROCHURE FILE
-app.get("/api/brochure/:fileName", (req, res) => {
+// CORS: allow your frontend origin (we’ll set CORS_ORIGIN on Render)
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN || "*",
+  })
+);
+
+app.use(express.json());
+
+// Simple health check
+app.get("/api/health", (req, res) => {
+  res.json({ status: "Backend is running" });
+});
+
+// Example hospitals route
+app.get("/api/hospitals", (req, res) => {
+  res.json({ message: "List of hospitals goes here" });
+});
+
+// Serve brochures from /backend/brochures
+app.get("/api/brochures/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "brochures", req.params.fileName);
 
   res.sendFile(filePath, (err) => {
@@ -34,7 +41,8 @@ app.get("/api/brochure/:fileName", (req, res) => {
   });
 });
 
-// Start server
-app.listen(5000, () => {
-  console.log("Backend running on http://localhost:5000");
+// Use Render’s PORT or default to 5000 locally
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
 });

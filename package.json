@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "type": "module",
   "main": "index.js",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
@@ -15,12 +14,14 @@
     "url": "git+https://github.com/abbywilson11/hpic.git"
   },
   "dependencies": {
+    "concurrently": "^9.2.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "concurrently": "^9.2.1"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
@@ -28,7 +29,9 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "vite": "^7.2.4"
+    "jsdom": "^27.2.0",
+    "vite": "^7.2.4",
+    "vitest": "^4.0.14"
   },
   "keywords": [],
   "author": "",

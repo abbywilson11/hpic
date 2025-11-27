@@ -403,7 +403,7 @@ export default function MyJournal() {
           {error && <p className="error">{error}</p>}
 
           <label>Date</label>
-          <input type="date" name="date" value={form.date} onChange={updateField} />
+          <input type="date" name="date" value={form.date} onChange={updateField} className={form.date ? "date-input has-value" : "date-input"} />
 
           <label>Symptom</label>
           <input
@@ -412,6 +412,7 @@ export default function MyJournal() {
             placeholder="e.g., headache, fatigue"
             value={form.symptom}
             onChange={updateField}
+            className={form.date ? "date-input has-value" : "date-input"}
           />
 
           <label>Severity</label>

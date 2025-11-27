@@ -8,7 +8,7 @@
 
 /* ✅ MAIN CONTENT WIDTH — same as Treatment */
 .page-container {
-  max-width: 900px;              /* 👈 match TreatmentOptions.css here */
+  max-width: 900px;
   width: 100%;
   margin: 40px auto;
   padding: 0 20px;
@@ -18,7 +18,7 @@
 /* ✅ PAGE TITLE — identical style */
 .page-title {
   background-color: #ffffff;
-  color: #d62828;                /* red title like Treatment */
+  color: #d62828;
   font-size: 34px;
   font-weight: 700;
   text-align: center;
@@ -28,14 +28,13 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* ✅ WHITE CONTENT BLOCKS — NOW FULL WIDTH LIKE TREATMENT */
+/* ✅ WHITE CONTENT BLOCKS */
 .section-block {
   background-color: #ffffff;
   padding: 28px 30px;
   margin-bottom: 25px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  /* ⛔️ NO max-width here anymore, so card = same width as title */
 }
 
 /* ✅ FORM LABELS */
@@ -61,6 +60,17 @@ textarea {
   box-sizing: border-box;
 }
 
+/* 🎯 DATE INPUT COLORS:
+   - grey when empty
+   - black when user has chosen a date */
+.date-input {
+  color: #777;
+}
+
+.date-input.has-value {
+  color: #222;
+}
+
 /* ✅ dropdown arrow + color */
 select {
   appearance: menulist;
@@ -78,11 +88,6 @@ input::placeholder,
 textarea::placeholder {
   color: #777;
   opacity: 1;
-}
-
-/* ✅ Safari date color */
-input[type="date"]::-webkit-datetime-edit {
-  color: #777;
 }
 
 /* ✅ focus state */

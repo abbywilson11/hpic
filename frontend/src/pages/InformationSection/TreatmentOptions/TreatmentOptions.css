@@ -1,20 +1,25 @@
 /* ================================
-   PAGE CONTAINER
+   FULL-PAGE BACKGROUND WRAPPER
 ================================ */
-.page-container {
-  text-align: left !important;
+.page-wrapper {
+  width: 100%;
+  background-color: #e0f7f4; /* mint */
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
 }
 
+/* ================================
+   MAIN CONTENT CONTAINER
+================================ */
 .page-container {
-  max-width: 900px;
-  margin: 40px auto;
+  max-width: 1000px; /* matches Early Detection */
+  width: 100%;
+  margin: 0 auto;
   padding: 0 20px;
-  background-color: #e0f7f4;
   font-family: "Segoe UI", sans-serif;
   color: #222;
   line-height: 1.6;
-  text-align: left !important;
-
 }
 
 /* ================================
@@ -23,7 +28,7 @@
 .page-title {
   background-color: #ffffff;
   color: #009688;
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 700;
   text-align: center;
   padding: 18px 0;
@@ -32,66 +37,69 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
+.page-subtitle {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  margin-top: 6px;
+}
+
 /* ================================
-   SECTION BLOCK
+   REUSABLE WHITE SECTION BLOCK
 ================================ */
 .section-block {
   background-color: #ffffff;
-  padding: 28px 30px;
-  margin-bottom: 25px;
+  padding: 28px 32px;
+  margin-bottom: 28px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  text-align: left !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
 .section-block h3 {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   color: #009688;
   font-size: 24px;
   font-weight: 600;
-  text-align: left !important;
 }
 
 .subheading {
   color: #00796b;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  margin-top: 15px;
+  margin-top: 18px;
   margin-bottom: 8px;
-  text-align: left !important;
-}
-
-/* Force left align for everything inside the treatment page */
-.page-container,
-.page-container h3,
-.page-container h4,
-.page-container p,
-.page-container li {
-  text-align: left !important;
 }
 
 /* ================================
-   TABLE SECTION
+   LIST SPACING
 ================================ */
-.table-section {
-  margin-top: 30px;
+.section-block ul li {
+  margin-bottom: 6px;
 }
 
 /* ================================
-   MOBILE
+   RESPONSIVE
 ================================ */
-@media (max-width: 600px) {
-  .section-image {
-    width: 100%;
-    height: auto;
+@media (max-width: 768px) {
+  .page-container {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .section-block {
+    padding: 22px;
+  }
+
+  .page-title {
+    font-size: 30px;
   }
 }
-.page-subtitle {
-  display: block;        /* puts subtitle on its own line */
-  font-size: 16px;       /* slightly smaller than title */
-  font-weight: 400;      /* lighter so title stands out */
-  color: #555;           /* softer, readable gray */
-  margin-top: 6px;       /* spacing below "Treatment Options" */
-  text-align: center;    /* keeps it centered */
+/* Ensure body text is left aligned */
+.section-block p,
+.section-block li,
+.section-block ul,
+.section-block h4 {
+  text-align: left !important;
 }

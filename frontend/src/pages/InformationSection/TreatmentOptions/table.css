@@ -1,22 +1,57 @@
-/* Search + Input */
+/* ===================================================
+   HOSPITAL FINDER (Hospital Table) STYLES
+   =================================================== */
+
+/* ✅ Outer wrapper – NO card styling, so it blends into section-block */
+.table-container {
+  max-width: 900px;   /* match Treatment section width */
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;         /* let .section-block control padding */
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Title under section-block card */
+.table-container h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ca3647;   /* red like other headings */
+}
+
+/* Subtext */
+.table-container > p {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+  text-align: center;
+}
+
+/* ================================
+   Search + Input Row
+   ================================ */
+
 .search-box {
   margin-bottom: 1.5rem;
   display: flex;
-  justify-content: center;  /* centers left-to-right */
-  align-items: center;       /* centers vertically */
-  gap: 10px;                 /* spacing between input + button */
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Optional: make the input a reasonable width */
 .search-box input {
   padding: 10px;
-  width: 50%;               /* adjust what looks best (50–60%) */
-  max-width: 400px;         /* prevents huge stretching */
-  border: 1px solid #e0f7f4;
+  width: 60%;             /* nice wide input */
+  max-width: 450px;
+  border: 1px solid #cfe7e1;
   border-radius: 8px;
+  font-size: 14px;
 }
 
-/* Keep your button the same */
 .search-box button {
   padding: 10px 16px;
   border: none;
@@ -25,58 +60,65 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-size: 14px;
 }
 
 .search-box button:hover {
   background-color: #00796b;
 }
 
-/* Errors */
-.error {
-  color: red;
-  margin-top: 1rem;
+/* Make the Reset button look softer if you used .reset-btn */
+.reset-btn {
+  background-color: #ffffff;
+  color: #009688;
+  border: 1px solid #009688;
 }
 
-/* Table styling */
+.reset-btn:hover {
+  background-color: #e0f7f4;
+}
+
+/* ================================
+   Messages (loading / errors / empty)
+   ================================ */
+
+.helper {
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+/* Stronger selector so global styles can't override */
+.table-container .error {
+  color: red !important;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+/* ================================
+   Table styling
+   ================================ */
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1.5rem;
-  text-align: left;
+  text-align: center;
 }
 
-th, td {
+th,
+td {
   padding: 12px 16px;
   border-bottom: 1px solid #ddd;
+  font-size: 14px;
 }
 
 th {
-  background-color: #f0f0f0;
-  font-weight: bold;
+  background-color: #f7fafc;
+  font-weight: 600;
 }
 
 tr:hover {
   background-color: #f9f9f9;
 }
-
-p {
-  margin-top: 1rem;
-  color: #555;
-  text-align: center;
-}
-
-/* SCOPED styles — apply ONLY to this component */
-.table-container {
-  color: #ca3647;
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;           /* <--- IMPORTANT */
-  padding: 2rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-
-/* NEVER put global layout rules in component CSS */

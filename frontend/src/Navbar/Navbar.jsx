@@ -3,8 +3,26 @@ import { useNavigate } from "react-router-dom";
 import "./Navbar.css"; // styling
 import logo from "../assets/Logo.png"; // HPIC logo image
 
-function Navbar() {
+export default function Navbar({ language, setLanguage }) {
   const navigate = useNavigate(); // Hook to programmatically navigate
+
+  // Text for both languages
+  const text = {
+    en: {
+      symptoms: "Symptoms",
+      treatment: "Treatment",
+      journal: "My Journal",
+      login: "Login / Sign Up",
+    },
+    fr: {
+      symptoms: "Symptômes",
+      treatment: "Traitement",
+      journal: "Mon journal",
+      login: "Connexion / Inscription",
+    },
+  };
+
+  const t = text[language];
 
   return (
     <nav className="navbar">
@@ -12,30 +30,48 @@ function Navbar() {
       <div className="navbar-left">
         <img
           src={logo}
-          alt="HPIC Logo" 
+          alt="HPIC Logo"
           className="logo"
-          onClick={() => navigate("/Home")} // Navigate to home on logo click
-          style={{ cursor: "pointer" }} // Change cursor to pointer on hover
+          onClick={() => navigate("/Home")}
+          style={{ cursor: "pointer" }}
         />
       </div>
 
       {/* Center: Page Buttons */}
       <div className="navbar-center">
-        <button onClick={() => navigate("/EarlyDetection")}>Symptoms</button>
-        <button onClick={() => navigate("/TreatmentOptions")}>Treatment</button>
-        <button onClick={() => navigate("/myjournal")}>My Journal</button>
+        <button onClick={() => navigate("/EarlyDetection")}>
+          {t.symptoms}
+        </button>
+        <button onClick={() => navigate("/TreatmentOptions")}>
+          {t.treatment}
+        </button>
+        <button onClick={() => navigate("/myjournal")}>
+          {t.journal}
+        </button>
       </div>
 
-      {/* Right: Language + Login (properly grouped) */}
+      {/* Right: Language + Login */}
       <div className="navbar-end">
         <div className="navbar-leftright">
-          <button className="language-btn" onClick={() => navigate("/ENFR")}>EN / FR </button>
+          {/* EN / FR toggle */}
+          <button
+            className={`language-btn ${language === "en" ? "active-lang" : ""}`}
+            onClick={() => setLanguage("en")}
+          >
+            EN
+          </button>
+          <button
+            className={`language-btn ${language === "fr" ? "active-lang" : ""}`}
+            onClick={() => setLanguage("fr")}
+          >
+            FR
+          </button>
         </div>
 
-        <button className="login-btn" onClick={() => navigate("/login")}>Login / Sign Up</button>
+        <button className="login-btn" onClick={() => navigate("/login")}>
+          {t.login}
+        </button>
       </div>
     </nav>
   );
 }
-
-export default Navbar;

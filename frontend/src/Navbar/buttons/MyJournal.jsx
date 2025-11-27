@@ -327,10 +327,13 @@
 //     </div>
 //   );
 // }
+
 import React, { useState, useEffect } from "react";
 import "./MyJournal.css";
 
-export default function MyJournal() {
+// We now accept "language" as a prop so this component can display
+// all text (labels, buttons, messages) in English ("en") or French ("fr").
+export default function MyJournal({ language }) {
   const [form, setForm] = useState({
     date: "",
     symptom: "",
@@ -342,6 +345,60 @@ export default function MyJournal() {
   const [editingId, setEditingId] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
+
+  // =========================================
+  //  BILINGUAL UI TEXT (EN + FR)
+  //  Centralized here so the logic below stays the same
+  //  and only the text changes based on "language".
+  // =========================================
+  const text = {
+    en: {
+      title: "Symptom Journal",
+      errorRequired: "Please enter a date and symptom.",
+
+      dateLabel: "Date",
+      symptomLabel: "Symptom",
+      symptomPlaceholder: "e.g., headache, fatigue",
+      severityLabel: "Severity",
+      severityOptions: ["Mild", "Moderate", "Severe"],
+      notesLabel: "Notes",
+      notesPlaceholder: "Optional notes...",
+
+      addButton: "Add Entry",
+      updateButton: "Update Entry",
+      cancelButton: "Cancel",
+
+      allEntriesTitle: "All Entries",
+      emptyMessage: "No entries yet.",
+      entrySymptomFallback: "(No symptom)",
+      editButton: "Edit",
+      deleteButton: "Delete",
+    },
+    fr: {
+      title: "Journal des symptômes",
+      errorRequired: "Veuillez entrer une date et un symptôme.",
+
+      dateLabel: "Date",
+      symptomLabel: "Symptôme",
+      symptomPlaceholder: "ex. : maux de tête, fatigue",
+      severityLabel: "Gravité",
+      severityOptions: ["Léger", "Modéré", "Sévère"],
+      notesLabel: "Notes",
+      notesPlaceholder: "Notes facultatives...",
+
+      addButton: "Ajouter une entrée",
+      updateButton: "Mettre à jour l’entrée",
+      cancelButton: "Annuler",
+
+      allEntriesTitle: "Toutes les entrées",
+      emptyMessage: "Aucune entrée pour le moment.",
+      entrySymptomFallback: "(Aucun symptôme)",
+      editButton: "Modifier",
+      deleteButton: "Supprimer",
+    },
+  };
+
+  const t = text[language] || text.en;
 
   useEffect(() => {
     const saved = localStorage.getItem("journalEntries");
@@ -364,11 +421,13 @@ export default function MyJournal() {
   const clearForm = () => {
     setForm({ date: "", symptom: "", severity: "Mild", notes: "" });
     setEditingId(null);
+    setError("");
   };
 
   const handleSave = () => {
+    // In bilingual mode, this message also uses the translation object.
     if (!form.date || !form.symptom) {
-      setError("Please enter a date and symptom.");
+      setError(t.errorRequired);
       return;
     }
 
@@ -396,36 +455,42 @@ export default function MyJournal() {
   return (
     <div className="page-wrapper">
       <div className="page-container">
-        <h2 className="page-title">Symptom Journal</h2>
+        <h2 className="page-title">{t.title}</h2>
 
         {/* FORM SECTION */}
         <div className="section-block">
           {error && <p className="error">{error}</p>}
 
-          <label>Date</label>
-          <input type="date" name="date" value={form.date} onChange={updateField} className={form.date ? "date-input has-value" : "date-input"} />
+          <label>{t.dateLabel}</label>
+          <input
+            type="date"
+            name="date"
+            value={form.date}
+            onChange={updateField}
+            className={form.date ? "date-input has-value" : "date-input"}
+          />
 
-          <label>Symptom</label>
+          <label>{t.symptomLabel}</label>
           <input
             type="text"
             name="symptom"
-            placeholder="e.g., headache, fatigue"
+            placeholder={t.symptomPlaceholder}
             value={form.symptom}
             onChange={updateField}
             className={form.date ? "date-input has-value" : "date-input"}
           />
 
-          <label>Severity</label>
+          <label>{t.severityLabel}</label>
           <select name="severity" value={form.severity} onChange={updateField}>
-            <option>Mild</option>
-            <option>Moderate</option>
-            <option>Severe</option>
+            {t.severityOptions.map((option) => (
+              <option key={option}>{option}</option>
+            ))}
           </select>
 
-          <label>Notes</label>
+          <label>{t.notesLabel}</label>
           <textarea
             name="notes"
-            placeholder="Optional notes..."
+            placeholder={t.notesPlaceholder}
             value={form.notes}
             onChange={updateField}
             rows="5"
@@ -433,12 +498,12 @@ export default function MyJournal() {
 
           <div className="journal-buttons">
             <button onClick={handleSave}>
-              {editingId ? "Update Entry" : "Add Entry"}
+              {editingId ? t.updateButton : t.addButton}
             </button>
 
             {editingId && (
               <button className="cancel" onClick={clearForm}>
-                Cancel
+                {t.cancelButton}
               </button>
             )}
           </div>
@@ -446,21 +511,26 @@ export default function MyJournal() {
 
         {/* ENTRIES LIST */}
         <div className="section-block">
-          <h3 className="section-title">All Entries</h3>
+          <h3 className="section-title">{t.allEntriesTitle}</h3>
 
           {entries.length === 0 ? (
-            <p className="empty">No entries yet.</p>
+            <p className="empty">{t.emptyMessage}</p>
           ) : (
             entries.map((entry) => (
               <div key={entry.id} className="journal-item">
-                <strong>{entry.date}</strong> — {entry.symptom} ({entry.severity})
-
+                <strong>{entry.date}</strong> —{" "}
+                {entry.symptom || t.entrySymptomFallback} ({entry.severity})
                 {entry.notes && <p className="note">{entry.notes}</p>}
 
                 <div className="entry-buttons">
-                  <button onClick={() => handleEdit(entry)}>Edit</button>
-                  <button className="delete" onClick={() => handleDelete(entry.id)}>
-                    Delete
+                  <button onClick={() => handleEdit(entry)}>
+                    {t.editButton}
+                  </button>
+                  <button
+                    className="delete"
+                    onClick={() => handleDelete(entry.id)}
+                  >
+                    {t.deleteButton}
                   </button>
                 </div>
               </div>

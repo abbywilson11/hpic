@@ -137,6 +137,7 @@
 import React, { useEffect } from "react";
 import "./TreatmentOptions.css";
 import Table from "./table.jsx";
+import { API_BASE_URL } from "../../../apiConfig";
 
 // We now accept "language" as a prop so this page
 // can display content in English ("en") or French ("fr")
@@ -146,7 +147,7 @@ export default function TreatmentOptions({ language }) {
   // It shows how the frontend would contact a backend API.
   // Right now, the response isn't used in the UI, but the pattern is in place.
   useEffect(() => {
-    fetch("http://localhost:5000/api")
+    fetch(`${API_BASE_URL}/api`)
       .then((res) => res.json())
       .catch((err) => console.error("Error fetching data:", err));
   }, []);

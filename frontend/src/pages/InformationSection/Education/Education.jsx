@@ -1,5 +1,6 @@
 import React from "react";
 import "./Education.css";
+import { API_BASE_URL } from "../../../apiConfig";
 
 // We now accept "language" as a prop so this page can display
 // all text, titles, and brochure labels in English or French.
@@ -18,7 +19,7 @@ export default function Education({ language }) {
   // Fetches a selected PDF from the backend and opens it in a new tab.
   // This part remains unchanged.
   const openBrochure = async (fileName) => {
-    const response = await fetch(`http://localhost:5000/api/brochure/${fileName}`);
+  const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/brochures/${fileName}`);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     window.open(url, "_blank");

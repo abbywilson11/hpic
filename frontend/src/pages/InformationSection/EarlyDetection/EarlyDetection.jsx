@@ -3,11 +3,11 @@ import "./earlyDetection.css";
 
 //importing images 
 import eyes from "../../../assets/jaundice.png";
-import growth from "../../../assets/growth.jpg";
-import pain from "../../../assets/pain.jpg";
+import growth from "../../../assets/growth.png";
+import pain from "../../../assets/pain.png";
 import infection from "../../../assets/infection.jpg";
 import swelling from "../../../assets/swelling.png";
-import fatigue from "../../../assets/fatigue.jpg";  
+import fatigue from "../../../assets/fatigue.png";  
 
 export default function EarlyDetection() {
   return (

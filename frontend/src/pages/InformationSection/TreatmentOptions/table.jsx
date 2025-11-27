@@ -196,7 +196,7 @@ function App() {
   return (
     <div className="table-container">
       <h1>Find Hospitals</h1>
-      <p>Search for hospitals for treatment in your city</p>
+      <p>Search for hospitals to access treatment in your city</p>
 
       {/* input box and search button */}
       <div className="search-box">
